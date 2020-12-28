@@ -26,6 +26,8 @@ gradlePlugin {
     plugins {
         register("robocodePlugin") {
             id = "com.bnorm.robocode"
+            displayName = "Robocode Gradle Plugin"
+            description = "Gradle plugin for developing Robocode bots"
             implementationClass = "com.bnorm.robocode.RobocodePlugin"
         }
     }

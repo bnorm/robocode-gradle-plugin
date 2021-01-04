@@ -5,4 +5,5 @@ data class RobocodeRobot(
 ) {
     lateinit var classPath: String
     var version: String? = null
+    var description: String? = null
 }

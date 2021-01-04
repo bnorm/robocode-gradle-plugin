@@ -34,7 +34,7 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website = "https://github.com/bnorm/robocode-gralde-plugin"
-    vcsUrl = "https://github.com/bnorm/robocode-gralde-plugin.git"
+    website = "https://github.com/bnorm/robocode-gradle-plugin"
+    vcsUrl = "https://github.com/bnorm/robocode-gradle-plugin.git"
     tags = listOf("robocode")
 }

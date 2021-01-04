@@ -21,21 +21,24 @@ open class RobocodeExtension(
     providerFactory: ProviderFactory
 ) {
     var download: Boolean by objects.property<Boolean>().apply {
+        // Download Robocode by default to make it easier for CI/CD environments
         convention(true)
     }
 
     var downloadVersion: String by objects.property<String>().apply {
+        // Download the latests version of Robocode by default
         convention(providerFactory.provider { SourceForge.findLatestVersion() })
     }
 
     internal var downloadDir: Directory by objects.directoryProperty().apply {
-        convention(layout.buildDirectory.dir("robocode/download"))
+        // Default directory is outside build directory to avoid a clean clearing robot cache
+        convention(layout.projectDirectory.dir(".robocode"))
     }
 
     var installDir: Directory by objects.directoryProperty().apply {
         val os = OperatingSystem.current()
         val robocodeHomeDir = if (os.isWindows) {
-            providerFactory.provider { File("/") }
+            providerFactory.provider { File("/") /* C:\ directory */ }
                 .forUseAtConfigurationTime()
                 .map { File(it, "robocode") }
         } else {
@@ -43,6 +46,7 @@ open class RobocodeExtension(
                 .forUseAtConfigurationTime()
                 .map { File(it, "robocode") }
         }
+        // Default to the default install directory of Robocode
         convention(layout.dir(robocodeHomeDir))
     }
 

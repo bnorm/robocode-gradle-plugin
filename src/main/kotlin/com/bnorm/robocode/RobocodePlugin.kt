@@ -105,6 +105,14 @@ class RobocodePlugin : Plugin<Project> {
 
             afterEvaluate {
                 /*
+                 * Convenience task for building all publishable bot jar files.
+                 */
+                val robotJars by tasks.registering {
+                    group = "robocode"
+                }
+                tasks.named("assemble").configure { dependsOn(robotJars) }
+
+                /*
                  * Plugin allows multiple bots to be packaged from the same source set. Go through
                  * each bot specified and create the required tasks.
                  */
@@ -145,7 +153,7 @@ class RobocodePlugin : Plugin<Project> {
                      * generated properties file and all source code. Also use ShadowJar to bundle
                      * all class files correct, including those from dependencies.
                      */
-                    tasks.register<ShadowJar>("robot${robot.name}Jar") {
+                    val robotJar by tasks.register<ShadowJar>("robot${robot.name}Jar") {
                         group = "robocode"
 
                         dependsOn(createVersion)
@@ -157,12 +165,13 @@ class RobocodePlugin : Plugin<Project> {
                         destinationDirectory.set(robotBuildDir)
 
                         // Configure source code, properties file, and all class files
-                        val main by the<SourceSetContainer>().named("main")
+                        val main by project.the<SourceSetContainer>().named("main")
                         from(main.output)
                         from(main.allSource)
                         from(robotResDir)
                         configurations = listOf(project.configurations.named("runtimeClasspath").get())
                     }
+                    robotJars.configure { dependsOn(robotJar) }
                 }
             }
         }

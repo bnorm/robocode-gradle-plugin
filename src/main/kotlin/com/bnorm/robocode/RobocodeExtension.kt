@@ -26,7 +26,9 @@ open class RobocodeExtension(
     }
 
     var downloadVersion: String by objects.property<String>().apply {
-        // Download the latests version of Robocode by default
+        // Download the latest version of Robocode by default
+        // TODO What if a connection to SourceForge cannot be made?
+        //  - Most importantly, a download of Robocode should continue to work.
         convention(providerFactory.provider { SourceForge.findLatestVersion() })
     }
 

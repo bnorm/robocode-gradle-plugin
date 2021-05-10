@@ -14,7 +14,7 @@ internal object SourceForge {
         registerModule(KotlinModule())
     }
 
-    private const val SOURCEFORGE_ROBOCODE_RSS = "https://sourceforge.net/projects/robocode/rss?limit=1"
+    private const val SOURCEFORGE_ROBOCODE_RSS = "https://sourceforge.net/projects/robocode/rss?limit=2"
     private val ROBOCODE_FILE_REGEX = "/robocode/([0-9.]+)/robocode-([0-9.]+)-setup.jar".toRegex()
 
     private fun downloadLink(version: String) =

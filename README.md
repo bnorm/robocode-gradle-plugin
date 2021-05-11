@@ -7,7 +7,7 @@
 
 ```kotlin
 plugins {
-    id("com.bnorm.robocode") version "0.1.0"
+    id("com.bnorm.robocode") version "0.1.1"
 }
 ```
 

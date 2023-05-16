@@ -1,7 +1,7 @@
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
-    id("com.gradle.plugin-publish") version "0.12.0"
+    id("com.gradle.plugin-publish") version "1.2.0"
 }
 
 group = "com.bnorm.robocode"
@@ -14,15 +14,17 @@ repositories {
 
 dependencies {
     // Plugins
-    implementation("com.github.jengelman.gradle.plugins:shadow:6.1.0")
+    implementation("com.github.johnrengelman:shadow:8.1.1")
 
     // Libraries
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
 }
 
 gradlePlugin {
+    website.set("https://github.com/bnorm/robocode-gradle-plugin")
+    vcsUrl.set("https://github.com/bnorm/robocode-gradle-plugin.git")
     plugins {
         register("robocodePlugin") {
             id = "com.bnorm.robocode"
@@ -33,8 +35,6 @@ gradlePlugin {
     }
 }
 
-pluginBundle {
-    website = "https://github.com/bnorm/robocode-gradle-plugin"
-    vcsUrl = "https://github.com/bnorm/robocode-gradle-plugin.git"
-    tags = listOf("robocode")
+kotlin{
+    jvmToolchain(11)
 }

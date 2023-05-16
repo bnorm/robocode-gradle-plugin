@@ -35,6 +35,6 @@ gradlePlugin {
     }
 }
 
-kotlin{
-    jvmToolchain(11)
+kotlin {
+    jvmToolchain(8)
 }

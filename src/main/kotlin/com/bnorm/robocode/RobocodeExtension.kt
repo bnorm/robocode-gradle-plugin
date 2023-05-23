@@ -41,11 +41,9 @@ open class RobocodeExtension(
         val os = OperatingSystem.current()
         val robocodeHomeDir = if (os.isWindows) {
             providerFactory.provider { File("/") /* C:\ directory */ }
-                .forUseAtConfigurationTime()
                 .map { File(it, "robocode") }
         } else {
             providerFactory.systemProperty("user.home")
-                .forUseAtConfigurationTime()
                 .map { File(it, "robocode") }
         }
         // Default to the default install directory of Robocode

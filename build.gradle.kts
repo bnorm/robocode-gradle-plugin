@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bnorm.robocode"
-version = "0.2.0-SNAPSHOT"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -31,6 +31,7 @@ gradlePlugin {
             displayName = "Robocode Gradle Plugin"
             description = "Gradle plugin for developing Robocode bots"
             implementationClass = "com.bnorm.robocode.RobocodePlugin"
+            tags.set(listOf("robocode"))
         }
     }
 }
